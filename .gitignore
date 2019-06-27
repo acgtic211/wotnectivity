@@ -6,6 +6,9 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.settings/
+.classpath
+.project
 
 ##########################
 ## Java
@@ -26,6 +29,9 @@ pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
 
 ##########################
 ## IntelliJ
@@ -68,4 +74,3 @@ nb-configuration.xml
 ## OS X
 ##########################
 .DS_Store
-
