@@ -1,5 +1,7 @@
 package es.ual.acg;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -18,11 +20,12 @@ public class HttpReq {
     }
 
     public String sendPostRequest(String address, HashMap<String, String> headers, HashMap<String, String> payload) {
-        
+        String response = "sin procesar";
         try {
             URL myurl = new URL(address);
 
             con = (HttpURLConnection) myurl.openConnection();
+            con.setDoOutput(true);
             con.setRequestMethod("POST");
             headers.forEach((k, v) -> con.setRequestProperty(k, v));
             StringJoiner sj = new StringJoiner("&");
@@ -42,7 +45,24 @@ public class HttpReq {
             try(OutputStream os = con.getOutputStream()) {
                 os.write(out);
             }
-            return con.getInputStream().toString();
+            
+            int responceCode = con.getResponseCode();
+
+            if (responceCode == HttpURLConnection.HTTP_OK)
+            {
+                String line;
+                BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                while ((line = br.readLine()) != null)
+                {
+                    response = "";
+                    response += line;
+                }
+            }
+            else 
+            {
+                response = "";
+            }
+            return response;
 
         }catch(Exception e) {
             e.printStackTrace();
