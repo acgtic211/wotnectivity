@@ -19,7 +19,7 @@ public class HttpReq {
 
     }
 
-    public CompletableFuture sendPostRequestPlain(String address, HashMap<String, String> headers, String payload) {
+    public CompletableFuture sendPostRequest(String address, HashMap<String, String> headers, String payload) {
             var client = HttpClient.newHttpClient();
 
             List<String> headersArrayList =  new ArrayList<>();
@@ -38,32 +38,5 @@ public class HttpReq {
                             .thenApply(HttpResponse::body)
                             .exceptionally(e -> "Error: " + e.getMessage());
 
-
-            /*
-             * URL myurl = new URL(address);
-             * 
-             * con = (HttpURLConnection) myurl.openConnection(); con.setDoOutput(true);
-             * con.setRequestMethod("POST"); headers.forEach((k, v) ->
-             * con.setRequestProperty(k, v)); StringJoiner sj = new StringJoiner("&");
-             * payload.forEach((k, v) -> { try { sj.add(URLEncoder.encode(k, "UTF-8") + "="
-             * + URLEncoder.encode(v, "UTF-8")); } catch (UnsupportedEncodingException e) {
-             * e.printStackTrace(); } });
-             * 
-             * byte[] out = sj.toString().getBytes(StandardCharsets.UTF_8); int length =
-             * out.length;
-             * 
-             * con.setFixedLengthStreamingMode(length); con.connect(); try(OutputStream os =
-             * con.getOutputStream()) { os.write(out); }
-             * 
-             * int responceCode = con.getResponseCode();
-             * 
-             * if (responceCode == HttpURLConnection.HTTP_OK) { String line; BufferedReader
-             * br = new BufferedReader(new InputStreamReader(con.getInputStream())); while
-             * ((line = br.readLine()) != null) { response = ""; response += line; } } else
-             * { response = ""; } return response;
-             * 
-             * }catch(Exception e) { e.printStackTrace(); return e.getMessage(); }finally {
-             * con.disconnect(); }
-             */
     }
 }
