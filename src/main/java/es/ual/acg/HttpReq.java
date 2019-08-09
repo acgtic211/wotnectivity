@@ -39,4 +39,25 @@ public class HttpReq {
                             .exceptionally(e -> "Error: " + e.getMessage());
 
     }
+
+    public CompletableFuture sendGetRequest(String address, HashMap<String, String> headers) {
+        var client = HttpClient.newHttpClient();
+
+        List<String> headersArrayList =  new ArrayList<>();
+        headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v);});
+        String[] headersArray = new String[headersArrayList.size()];
+
+        
+        var request = HttpRequest.newBuilder()
+                        .GET()
+                        .uri(URI.create(address))
+                        .headers(headersArrayList.toArray(headersArray))
+                        .build();
+                        
+    
+        return client.sendAsync(request, BodyHandlers.ofString())
+                        .thenApply(HttpResponse::body)
+                        .exceptionally(e -> "Error: " + e.getMessage());
+
+    }
 }
