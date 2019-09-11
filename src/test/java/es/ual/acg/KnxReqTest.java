@@ -27,4 +27,13 @@ public class KnxReqTest {
         
     }
 
+    @Test
+    public void TestGetStatus(){
+
+        KnxReq kr= new KnxReq();
+        KnxUtils ku= new KnxUtils();
+        String address = ku.discoverServer().getHostAddress();
+        kr.getStatus(address,"2/0/1");
+        
+    }
 }
