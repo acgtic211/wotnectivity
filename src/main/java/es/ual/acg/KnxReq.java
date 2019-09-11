@@ -1,74 +1,36 @@
 package es.ual.acg;
 
-import java.net.InetAddress;
+import java.net.InetSocketAddress;
 
+import tuwien.auto.calimero.GroupAddress;
 import tuwien.auto.calimero.KNXException;
-import tuwien.auto.calimero.knxnetip.Discoverer;
+import tuwien.auto.calimero.link.KNXNetworkLink;
+import tuwien.auto.calimero.link.KNXNetworkLinkIP;
+import tuwien.auto.calimero.link.medium.TPSettings;
+import tuwien.auto.calimero.process.ProcessCommunicator;
+import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
 
 public class KnxReq {
 
 
-    public void discoverServerPrint(){
+	public void getStatus(String remoteHost, String group){
+	
+		final InetSocketAddress remote = new InetSocketAddress(remoteHost, 3671);
+		// Create our network link, and pass it to a process communicator
+		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(null, remote, false, TPSettings.TP1);
+				ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
 
-        System.out.println("This example discovers all active KNXnet/IP servers in your IP network");
+			System.out.println("read boolean value from datapoint " + group);
+			final boolean value = pc.readBool(new GroupAddress(group));
+			System.out.println("datapoint " + group + " value = " + value);
 
-		try {
-			// set true to be aware of Network Address Translation (NAT) during discovery
-			final boolean useNAT = false;
-			// request multicast responses (as opposed to unicast responses) from discovered servers
-			final boolean requestMulticastResponse = false;
-
-			final Discoverer discoverer = new Discoverer(null, 0, useNAT, requestMulticastResponse);
-			discoverer.startSearch(3, true);
-
-			// print out responding servers
-			discoverer.getSearchResponses().forEach(r -> System.out.format("%s %s <=> %s%n",
-					r.getNetworkInterface().getName(),
-					r.getAddress(),
-					r.getResponse().toString().replace(", ", "\n\t")));
-			
+			// Uncomment the next line, if you want to write back the same value to the KNX network
+			// pc.write(group, value);
 		}
 		catch (KNXException | InterruptedException e) {
-			// KNXException: all Calimero-specific checked exceptions are subtypes of KNXException
-			// InterruptedException: longer tasks that might block are interruptible, e.g., server search.
-			System.out.println("Error during KNXnet/IP discovery: " + e);
+			System.out.println("Error accessing KNX datapoint: " + e.getMessage());
 		}
-
 	}
-	
-
-	// This method return the InetAdrress of the first server found in the network 
-	public InetAddress discoverServer(){
-
-        System.out.println("This example discovers all active KNXnet/IP servers in your IP network");
-
-		try {
-			// set true to be aware of Network Address Translation (NAT) during discovery
-			final boolean useNAT = false;
-			// request multicast responses (as opposed to unicast responses) from discovered servers
-			final boolean requestMulticastResponse = false;
-
-			final Discoverer discoverer = new Discoverer(null, 0, useNAT, requestMulticastResponse);
-			discoverer.startSearch(3, true);
-
-
-			if(discoverer.getSearchResponses().size() >= 0){
-				System.out.println(discoverer.getSearchResponses().get(0).getAddress());
-				return discoverer.getSearchResponses().get(0).getResponse().get;
-			}else{
-				return null;
-			}
-			
-		}
-		catch (KNXException | InterruptedException e) {
-			// KNXException: all Calimero-specific checked exceptions are subtypes of KNXException
-			// InterruptedException: longer tasks that might block are interruptible, e.g., server search.
-			System.out.println("Error during KNXnet/IP discovery: " + e);
-			return null;
-		}
-
-	}
-	
-	
-	
+		
 }
+	

@@ -8,21 +8,23 @@ public class KnxReqTest {
 
     @Test
     public void TestDiscoverServerPrint() {
-        KnxReq knxReq = new KnxReq();
-        knxReq.discoverServerPrint();
+        KnxUtils ku= new KnxUtils();
+        ku.discoverServersPrint();
     }
 
     @Test
     public void TestDiscoverServer() {
-        KnxReq knxReq = new KnxReq();
-        assertNotEquals(null, knxReq.discoverServer());
+        KnxUtils ku= new KnxUtils();
+        assertNotEquals(null, ku.discoverServer());
     }
 
     @Test
     public void TestGroupDiscoverer(){
 
-        KnxProcessListener pl = new KnxProcessListener();
-        pl.monitorGroups("192.168.1.149");
+        KnxUtils ku= new KnxUtils();
+        String address = ku.discoverServer().getHostAddress();
+        ku.monitorGroups(address);
+        
     }
 
 }
