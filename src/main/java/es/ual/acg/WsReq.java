@@ -2,14 +2,12 @@ package es.ual.acg;
 
 import java.net.URI;
 import java.net.http.HttpClient;
-import java.net.http.WebSocket;
 import java.util.concurrent.CompletableFuture;
 
 public class WsReq {
 
 
     private HttpClient client;
-    private String address;
 
     public WsReq() {
         this.client = HttpClient.newHttpClient();
