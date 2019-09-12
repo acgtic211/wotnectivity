@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class KnxReqTest {
 
-    @Test
+    /* @Test
     public void TestDiscoverServerPrint() {
         KnxUtils ku = new KnxUtils();
         ku.discoverServersPrint();
@@ -25,7 +25,7 @@ public class KnxReqTest {
         String address = ku.discoverServer().getHostAddress();
         ku.monitorGroups(address);
 
-    }
+    } */
 
     @Test
     public void TestGetStatus() {
