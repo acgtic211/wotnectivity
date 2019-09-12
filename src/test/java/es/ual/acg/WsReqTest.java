@@ -15,9 +15,9 @@ public class WsReqTest{
         HashMap<String, String> headers = new HashMap<>();
         HashMap<String, String> headers2 = new HashMap<>();
         headers.put("content-type", "text/plain");
-        headers.put("Authorization", "no me jodas");
+        headers.put("Authorization", "AUTHKEY");
         headers2.put("content-type", "application/json");
-        headers2.put("Authorization", "no me jodas");
+        headers2.put("Authorization", "AUTHKEY");
         
         String payload = "test";
 
@@ -25,7 +25,6 @@ public class WsReqTest{
         
         try{
             var response = (WebSocket)tester.sendText(address, payload).get();
-            var response2 = (WebSocket)tester.sendText(address, payload).get();  
             response.sendClose(505, "vaya");
             assertNotEquals(response,"");
         }catch(Exception e){

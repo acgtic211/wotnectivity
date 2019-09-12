@@ -61,10 +61,10 @@ public class HttpReqTest{
         HashMap<String, String> headers = new HashMap<>();
         HashMap<String, String> headers2 = new HashMap<>();
         headers.put("content-type", "text/plain");
-        headers.put("Authorization", "no me jodas");
+        headers.put("Authorization", "AUTHKEY");
         headers2.put("content-type", "application/json");
-        headers2.put("Authorization", "no me jodas");
-        String payload = "{\"body\":\"vaya tela\"}";
+        headers2.put("Authorization", "AUTHKEY");
+        String payload = "{\"body\":\"BODYVALUE\"}";
 
         HttpReq tester = new HttpReq();
         try{
@@ -85,9 +85,9 @@ public class HttpReqTest{
         HashMap<String, String> headers = new HashMap<>();
         HashMap<String, String> headers2 = new HashMap<>();
         headers.put("content-type", "text/plain");
-        headers.put("Authorization", "no me jodas");
+        headers.put("Authorization", "AUTHKEY");
         headers2.put("content-type", "application/json");
-        headers2.put("Authorization", "no me jodas");
+        headers2.put("Authorization", "AUTHKEY");
 
         HttpReq tester = new HttpReq();
         try{
