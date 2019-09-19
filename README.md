@@ -14,3 +14,7 @@ Depends on the gateway used to control the devices. Until now we are studying 2 
 We have disponibility of the KNX InSide MTN6500 gateway so our studies will be based on this gateway of KNX.
 
 To use these kinds of devices we have to know the {ip}:{port}/{groupAddress} an the data type acepted by that group.
+
+### Install instructions
+
+To install the library in your maven local repository you have to execute `mvn install:install-file "-Dfile=wotnectivity-0.0.1-ALPHA-SNAPSHOT.jar" "-DgroupId=es.ual.acg" "-DartifactId=wotnectivity" "-Dversion=0.0.1-ALPHA-SNAPSHOT" "-Dpackaging=jar"` in the folder where the jar is located.
