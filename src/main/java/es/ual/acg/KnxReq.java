@@ -22,7 +22,8 @@ public class KnxReq {
 		final InetSocketAddress remote = new InetSocketAddress(remoteHost, 3671);
 		// Create our network link, and pass it to a process communicator
 		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(new InetSocketAddress("192.168.1.3", 0),remote, false, TPSettings.TP1);
-				ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
+				
+			ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
 
 			System.out.println("read double value from datapoint " + group);
 
@@ -43,7 +44,10 @@ public class KnxReq {
 			String result = pc.read(dp);
 
 			System.out.println("datapoint " + group + " value = " + result);
-				
+			
+			//JCR: Review
+			pc.close();
+			knxLink.close();
 			
 			return result;
 		}
@@ -58,7 +62,8 @@ public class KnxReq {
 		final InetSocketAddress local = new InetSocketAddress(localip, 0);
 		// Create our network link, and pass it to a process communicator
 		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(local, remote, false, TPSettings.TP1);
-				ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
+			
+			ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
 
 			System.out.println("read double value from datapoint " + group);
 
@@ -73,6 +78,10 @@ public class KnxReq {
 
 			dp.setDPT(0, datatype);
 			pc.write(dp, value);
+
+			//JCR: Review
+			pc.close();
+			knxLink.close();
 
 		}
 		catch (KNXException | InterruptedException e) {
