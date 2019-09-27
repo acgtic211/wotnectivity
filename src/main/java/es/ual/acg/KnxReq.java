@@ -1,5 +1,6 @@
 package es.ual.acg;
 
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
 import tuwien.auto.calimero.GroupAddress;
@@ -16,11 +17,11 @@ import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
 public class KnxReq {
 
 
-	public String getStatus(String remoteHost, String group, String datatype) throws Exception {
+	public String getStatus(String localip, String remoteHost, String group, String datatype) throws Exception {
 	
 		final InetSocketAddress remote = new InetSocketAddress(remoteHost, 3671);
 		// Create our network link, and pass it to a process communicator
-		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(null, remote, false, TPSettings.TP1);
+		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(new InetSocketAddress("192.168.1.3", 0),remote, false, TPSettings.TP1);
 				ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
 
 			System.out.println("read double value from datapoint " + group);
@@ -51,11 +52,12 @@ public class KnxReq {
 		}
 	}
 
-	public void setStatus(String remoteHost, String group, String datatype, String value) throws Exception {
+	public void setStatus(String localip, String remoteHost, String group, String datatype, String value) throws Exception {
 	
 		final InetSocketAddress remote = new InetSocketAddress(remoteHost, 3671);
+		final InetSocketAddress local = new InetSocketAddress(localip, 0);
 		// Create our network link, and pass it to a process communicator
-		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(null, remote, false, TPSettings.TP1);
+		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(local, remote, false, TPSettings.TP1);
 				ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
 
 			System.out.println("read double value from datapoint " + group);
