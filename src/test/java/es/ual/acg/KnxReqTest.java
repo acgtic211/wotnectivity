@@ -39,7 +39,7 @@ public class KnxReqTest {
         
         
         try {
-            System.out.println("The address is " +address+ " and the status is " + kr.getStatus("192.168.1.3",address, "2/0/1", "1.001"));
+            System.out.println("The address is " +address+ " and the status is " + kr.getStatus("192.168.1.22",address, "2/0/1", "1.001"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class KnxReqTest {
 
              
         try {
-            kr.setStatus("192.168.1.3",address, "2/0/0", "1.001","off");
+            kr.setStatus("192.168.1.22",address, "2/0/0", "1.001","off");
         } catch (Exception e) {
             e.printStackTrace();
         }

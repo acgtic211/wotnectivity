@@ -21,7 +21,7 @@ public class KnxReq {
 	
 		final InetSocketAddress remote = new InetSocketAddress(remoteHost, 3671);
 		// Create our network link, and pass it to a process communicator
-		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(new InetSocketAddress("192.168.1.3", 0),remote, false, TPSettings.TP1);
+		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(new InetSocketAddress(localip, 0),remote, false, TPSettings.TP1);
 				
 			ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
 
