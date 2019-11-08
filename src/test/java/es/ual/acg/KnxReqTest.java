@@ -10,8 +10,9 @@ public class KnxReqTest {
 
     KnxUtils ku = new KnxUtils();
     String address = ku.discoverServer().getHostAddress();
-    KnxReq kr = new KnxReq();   
-    /* @Test
+    KnxReq kr = new KnxReq();
+    /*   
+    @Test
     public void TestDiscoverServerPrint() {
         KnxUtils ku = new KnxUtils();
         ku.discoverServersPrint();
@@ -30,7 +31,7 @@ public class KnxReqTest {
         String address = ku.discoverServer().getHostAddress();
         ku.monitorGroups(address);
 
-    } */
+    }
 
     @Test
     public void TestGetStatus() {
@@ -51,10 +52,11 @@ public class KnxReqTest {
 
              
         try {
-            kr.setStatus("192.168.1.22",address, "2/0/0", "1.001","off");
+            kr.setStatus(address, "2/0/0", "1.001","off");
         } catch (Exception e) {
             e.printStackTrace();
         }
         
     }
+    */
 }
