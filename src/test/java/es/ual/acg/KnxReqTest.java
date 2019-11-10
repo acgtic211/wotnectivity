@@ -10,7 +10,7 @@ public class KnxReqTest {
 
     KnxUtils ku = new KnxUtils();
     String address = ku.discoverServer().getHostAddress();
-    KnxReq kr = new KnxReq();
+    //KnxReq kr = new KnxReq();
     /*   
     @Test
     public void TestDiscoverServerPrint() {
@@ -35,9 +35,6 @@ public class KnxReqTest {
 
     @Test
     public void TestGetStatus() {
-
-        
-        
         
         try {
             System.out.println("The address is " +address+ " and the status is " + kr.getStatus("192.168.1.22",address, "2/0/1", "1.001"));

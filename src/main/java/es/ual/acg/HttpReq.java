@@ -18,7 +18,7 @@ public class HttpReq {
         this.client = HttpClient.newHttpClient();
     }
 
-    public CompletableFuture sendPostRequest(String address, HashMap<String, String> headers, String payload) {
+    public CompletableFuture<String> sendPostRequest(String address, HashMap<String, String> headers, String payload) {
             
 
             List<String> headersArrayList =  new ArrayList<>();
@@ -39,7 +39,7 @@ public class HttpReq {
 
     }
 
-    public CompletableFuture sendGetRequest(String address, HashMap<String, String> headers) {
+    public CompletableFuture<String> sendGetRequest(String address, HashMap<String, String> headers) {
 
         List<String> headersArrayList =  new ArrayList<>();
         headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v);});
@@ -59,7 +59,7 @@ public class HttpReq {
 
     }
     
-    public CompletableFuture sendPutRequest(String address, HashMap<String, String> headers, String payload) {
+    public CompletableFuture<String> sendPutRequest(String address, HashMap<String, String> headers, String payload) {
 
 
         List<String> headersArrayList =  new ArrayList<>();
@@ -79,7 +79,7 @@ public class HttpReq {
 
     }
 
-    public CompletableFuture sendDeleteRequest(String address, HashMap<String, String> headers) {
+    public CompletableFuture<String> sendDeleteRequest(String address, HashMap<String, String> headers) {
 
         List<String> headersArrayList =  new ArrayList<>();
         headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v);});
