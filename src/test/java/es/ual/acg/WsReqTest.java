@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class WsReqTest{
 
-    String address = "ws://localhost:32768";
+    String address = "wss://echo.websocket.org";
     String payload = "test";
     WsReq tester = new WsReq(address, new WsListener());
     WsReq tester2 = new WsReq(address);
