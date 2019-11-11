@@ -1,14 +1,16 @@
 pipeline {
     agent {
-        docker {
-            image 'maven:3.6-jdk-11-openj9' 
-            args '-v /root/.m2:/root/.m2' 
+        dockerfile {
+            filename 'Dockerfile.build'
+            dir '.'
+            label 'Docker KNX MockServer build'
+            args '-v /tmp:/tmp'
         }
     }
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn -B -Dtest=HttpReq*,WsReq* clean package' 
+                sh 'mvn -B clean package' 
                 // mvn -B -DskipTests clean package
                 jacoco( 
                     execPattern: 'target/*.exec',
