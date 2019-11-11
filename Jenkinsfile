@@ -4,7 +4,6 @@ pipeline {
             filename 'Dockerfile.build'
             dir '.'
             label 'Docker KNX MockServer build'
-            args '-v /tmp:/tmp'
         }
     }
     stages {
