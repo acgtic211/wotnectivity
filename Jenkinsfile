@@ -2,8 +2,6 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile.build'
-            dir '.'
-            label 'Docker KNX MockServer build'
         }
     }
     stages {
