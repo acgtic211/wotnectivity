@@ -7,7 +7,6 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'gradle run'
                 sh 'mvn -B clean package' 
                 // mvn -B -DskipTests clean package
                 jacoco( 

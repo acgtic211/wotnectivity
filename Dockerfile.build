@@ -51,3 +51,4 @@ RUN mkdir -p /usr/app/
 WORKDIR /usr/app
 RUN git clone https://github.com/acgtic211/calimero-testnetwork.git
 WORKDIR /usr/app/calimero-testnetwork
+CMD ["gradle", "run"]
