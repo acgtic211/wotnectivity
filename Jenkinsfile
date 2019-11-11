@@ -2,7 +2,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile.build'
-            args '--entrypoint='
+            args '--entrypoint=gradle run'
         }
     }
     stages {
