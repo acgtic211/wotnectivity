@@ -1,5 +1,6 @@
 FROM maven:3.6-jdk-11-openj9
 
+USER Jenkins
 ENV GRADLE_HOME /opt/gradle
 
 RUN set -o errexit -o nounset \
