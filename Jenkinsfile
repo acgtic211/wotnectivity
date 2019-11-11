@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh '/usr/app/calimero-testnetwork/gradle run'
+                sh '/usr/app/calimero-testnetwork/ls -l'
                 sh 'mvn -B clean package' 
                 // mvn -B -DskipTests clean package
                 jacoco( 
