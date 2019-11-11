@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn -B -Dtest=KnxReqTest* clean package' 
+                sh 'mvn -B -Dtest=!KnxReqTest* clean package' 
                 // mvn -B -DskipTests clean package
                 jacoco( 
                     execPattern: 'target/Http*.exec',
