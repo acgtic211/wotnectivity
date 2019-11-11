@@ -1,8 +1,6 @@
 package es.ual.acg;
 
-import static org.junit.Assert.assertNotEquals;
-
-import org.junit.Test;
+import es.ual.acg.utils.KnxUtils;
 
 public class KnxReqTest {
 

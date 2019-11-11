@@ -5,6 +5,8 @@ import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.util.concurrent.CompletableFuture;
 
+import es.ual.acg.utils.WsListener;
+
 public class WsReq {
 
     private HttpClient client;
@@ -13,15 +15,17 @@ public class WsReq {
 
     public WsReq(String address, WebSocket.Listener listener) {
         this.client = HttpClient.newHttpClient();
+        this.listener = listener;
         this.wsConnection = this.client.newWebSocketBuilder().buildAsync(URI.create(address), this.listener).join();
         ;
-        this.listener = listener;
+        
     }
     public WsReq(String address) {
         this.client = HttpClient.newHttpClient();
+        this.listener = new WsListener();
         this.wsConnection = this.client.newWebSocketBuilder().buildAsync(URI.create(address), this.listener).join();
         ;
-        this.listener = new WsListener();
+        
     }
 
     public CompletableFuture<WebSocket> sendText(String text) {
