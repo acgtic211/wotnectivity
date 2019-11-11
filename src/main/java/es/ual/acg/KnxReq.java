@@ -31,7 +31,7 @@ public class KnxReq {
 				
 			ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
 
-			System.out.println("read double value from datapoint " + group);
+			System.out.println("read value from datapoint " + group);
 
 			GroupAddress groupAddress = new GroupAddress(group);
 
@@ -47,7 +47,7 @@ public class KnxReq {
 			//dp.setDPT(0, KnxUtils.getTranslatorDPT(String value));
 
 			dp.setDPT(0, datatype);
-			String result = pc.read(dp);
+			String result = pc.read(dp).toString();
 
 			System.out.println("datapoint " + group + " value = " + result);
 			
@@ -71,7 +71,7 @@ public class KnxReq {
 			
 			ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
 
-			System.out.println("read double value from datapoint " + group);
+			System.out.println("read value from datapoint " + group);
 
 			GroupAddress groupAddress = new GroupAddress(group);
 
