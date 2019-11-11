@@ -7,8 +7,9 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'su -'
-                sh '/usr/app/calimero-testnetwork/gradle run'
+                sh 'cd /usr/app/calimero-testnetwork'
+                sh './gradle run'
+                sh 'cd /var/jenkins_home/workspace/wotnectivity'
                 sh 'mvn -B clean package' 
                 // mvn -B -DskipTests clean package
                 jacoco( 
