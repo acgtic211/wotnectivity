@@ -2,6 +2,7 @@ package es.ual.acg;
 
 import static org.junit.Assert.assertNotEquals;
 
+
 import org.junit.Test;
 
 import es.ual.acg.utils.KnxUtils;
@@ -10,7 +11,6 @@ import es.ual.acg.utils.KnxUtils;
 public class KnxReqTest {
 
     
-
     KnxUtils ku = new KnxUtils();
     String address = ku.discoverServer().getHostAddress();
     KnxReq kr = new KnxReq();

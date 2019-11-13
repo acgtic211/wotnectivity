@@ -73,6 +73,7 @@
                         <configuration>
                             <excludes>
                                 <exclude>es/ual/acg/utils/*</exclude>
+                                <exclude>es/ual/acg/KnxReq.java</exclude>
                             </excludes>
                             <rules>
                                 <rule>
