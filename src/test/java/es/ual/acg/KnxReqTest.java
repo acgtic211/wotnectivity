@@ -11,7 +11,7 @@ import es.ual.acg.utils.KnxUtils;
 public class KnxReqTest {
 
     
-    KnxUtils ku = new KnxUtils();
+    /* KnxUtils ku = new KnxUtils();
     String address = ku.discoverServer().getHostAddress();
     KnxReq kr = new KnxReq();
 
@@ -48,6 +48,6 @@ public class KnxReqTest {
             e.printStackTrace();
         }
         
-    }
+    } */
     
 }
