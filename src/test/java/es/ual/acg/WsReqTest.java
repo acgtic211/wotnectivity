@@ -13,15 +13,15 @@ public class WsReqTest{
 
     String address = "wss://echo.websocket.org";
     String payload = "test";
-    WsReq tester = new WsReq(address, new WsListener());
-    WsReq tester2 = new WsReq(address);
+    WsReq tester = new WsReq(new WsListener());
+    WsReq tester2 = new WsReq();
 
     @Test
     public void TestWsReqSendText() {
         
         
         try{
-            var response = this.tester.sendText(payload);
+            var response = this.tester.sendText(this.address, this.payload);
 
             System.out.println(response.toString());
             assertNotEquals(response,"");
@@ -36,7 +36,7 @@ public class WsReqTest{
         
         
         try{
-            var response = this.tester.sendText(payload);
+            var response = this.tester.sendText(this.address, this.payload);
             System.out.println(response.get().toString());
             assertNotEquals(this.tester.sendClose().get().toString(),"");
         }catch(Exception e){
@@ -50,7 +50,7 @@ public class WsReqTest{
         
         
         try{
-            var response = this.tester2.sendText(payload);
+            var response = this.tester2.sendText(this.address, this.payload);
 
             System.out.println(response.toString());
             assertNotEquals(response,"");

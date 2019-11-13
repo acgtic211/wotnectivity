@@ -23,9 +23,9 @@ public class KnxReq {
 		
 	}
 
-	public String getStatus(String remoteHost, String group, String datatype) throws Exception {
+	public String getStatus(String address, String group, String datatype) throws Exception {
 	
-		this.remote = new InetSocketAddress(remoteHost, 3671);
+		this.remote = new InetSocketAddress(address, 3671);
 		// Create our network link, and pass it to a process communicator
 		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(null,this.remote, false, TPSettings.TP1);
 				
@@ -62,9 +62,9 @@ public class KnxReq {
 		}
 	}
 
-	public void setStatus(String remoteHost, String group, String datatype, String value) throws Exception {
+	public void setStatus(String address, String group, String datatype, String value) throws Exception {
 	
-		this.remote = new InetSocketAddress(remoteHost, 3671);
+		this.remote = new InetSocketAddress(address, 3671);
 		//final InetSocketAddress local = new InetSocketAddress(localip, 0);
 		// Create our network link, and pass it to a process communicator
 		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(null, this.remote, false, TPSettings.TP1);

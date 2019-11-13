@@ -17,14 +17,14 @@ import tuwien.auto.calimero.process.ProcessListener;
 public class KnxProcessListener implements ProcessListener {
 
 
-    public void monitorGroups(String remoteHost){
-		final InetSocketAddress remote = new InetSocketAddress(remoteHost, 3671);
+    public void monitorGroups(String address){
+		final InetSocketAddress remote = new InetSocketAddress(address, 3671);
 		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(null, remote, false, TPSettings.TP1);
 		     ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
 
 			// start listening to group notifications using a process listener
 			pc.addProcessListener(this);
-			System.out.println("Monitoring KNX network using KNXnet/IP server " + remoteHost + " ...");
+			System.out.println("Monitoring KNX network using KNXnet/IP server " + address + " ...");
 
 			while (knxLink.isOpen()) Thread.sleep(1000);
 		}

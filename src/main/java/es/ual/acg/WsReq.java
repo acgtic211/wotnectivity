@@ -13,24 +13,21 @@ public class WsReq {
     private WebSocket wsConnection;
     private WebSocket.Listener listener;
 
-    public WsReq(String address, WebSocket.Listener listener) {
+    public WsReq(WebSocket.Listener listener) {
         this.client = HttpClient.newHttpClient();
         this.listener = listener;
-        this.wsConnection = this.client.newWebSocketBuilder().buildAsync(URI.create(address), this.listener).join();
-        ;
         
     }
-    public WsReq(String address) {
+    public WsReq() {
         this.client = HttpClient.newHttpClient();
         this.listener = new WsListener();
-        this.wsConnection = this.client.newWebSocketBuilder().buildAsync(URI.create(address), this.listener).join();
-        ;
         
     }
 
-    public CompletableFuture<WebSocket> sendText(String text) {
+    public CompletableFuture<WebSocket> sendText(String address, String payload) {
         
-        return this.wsConnection.sendText(text, true);
+        this.wsConnection = this.client.newWebSocketBuilder().buildAsync(URI.create(address), this.listener).join();;
+        return this.wsConnection.sendText(payload, true);
     }
 
     public CompletableFuture<WebSocket> sendClose(){

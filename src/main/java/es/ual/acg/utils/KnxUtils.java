@@ -75,9 +75,9 @@ public class KnxUtils {
 
     }
     
-    public void monitorGroups(String remoteHost){
+    public void monitorGroups(String address){
 
-        this.processListener.monitorGroups(remoteHost);
+        this.processListener.monitorGroups(address);
 
 	}
 
