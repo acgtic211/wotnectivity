@@ -10,7 +10,11 @@ public class KnxUtils {
     private KnxProcessListener processListener;
 
 
-    public KnxUtils(){
+    
+	/** 
+	 * @return 
+	 */
+	public KnxUtils(){
         this.processListener=new KnxProcessListener();
     }
 
@@ -43,6 +47,10 @@ public class KnxUtils {
 	}
 	
 
+	
+	/** 
+	 * @return InetAddress
+	 */
 	// This method return the InetAdrress of the first server found in the network 
 	public InetAddress discoverServer(){
 
@@ -75,7 +83,11 @@ public class KnxUtils {
 
     }
     
-    public void monitorGroups(String address){
+    
+	/** 
+	 * @param address
+	 */
+	public void monitorGroups(String address){
 
         this.processListener.monitorGroups(address);
 

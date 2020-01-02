@@ -17,7 +17,11 @@ import tuwien.auto.calimero.process.ProcessListener;
 public class KnxProcessListener implements ProcessListener {
 
 
-    public void monitorGroups(String address){
+    
+	/** 
+	 * @param address
+	 */
+	public void monitorGroups(String address){
 		final InetSocketAddress remote = new InetSocketAddress(address, 3671);
 		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(null, remote, false, TPSettings.TP1);
 		     ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)) {
@@ -33,15 +37,40 @@ public class KnxProcessListener implements ProcessListener {
 		}
     }
     
-    @Override
+    
+	/** 
+	 * @param svc
+	 * @param e
+	 */
+	@Override
 	public void groupWrite(final ProcessEvent e) { print("write.ind", e); }
+	
+	/** 
+	 * @param svc
+	 * @param e
+	 */
 	@Override
 	public void groupReadRequest(final ProcessEvent e) { print("read.req", e); }
+	
+	/** 
+	 * @param svc
+	 * @param e
+	 */
 	@Override
 	public void groupReadResponse(final ProcessEvent e) { print("read.res", e); }
+	
+	/** 
+	 * @param svc
+	 * @param e
+	 */
 	@Override
 	public void detached(final DetachEvent e) {}
 
+	
+	/** 
+	 * @param svc
+	 * @param e
+	 */
 	// Called on every group notification issued by a datapoint on the KNX network. It prints the service primitive,
 	// KNX source and destination address, and Application Service Data Unit (ASDU) to System.out.
 	private static void print(final String svc, final ProcessEvent e)

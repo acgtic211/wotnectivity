@@ -10,19 +10,38 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.URI;
 
-public class HttpReq {
+
+/**
+ * This is a class used to send HTTP request.
+ *
+ * @see java.lang.Object
+ * @author Manel Mena
+ */
+public class HttpReq implements IRequester {
 
     private HttpClient client;
 
+    
+    /** 
+     * Default constructor of the class HttpReq.
+     * @return 
+     */
     public HttpReq() {
         this.client = HttpClient.newHttpClient();
     }
 
-    public CompletableFuture<String> sendPostRequest(String address, HashMap<String, String> headers, String payload) {
+    
+    /** 
+     * @param address
+     * @param headers
+     * @param payload
+     * @return CompletableFuture<String>
+     */
+    private CompletableFuture<String> sendPostRequest(String address, HashMap<String, Object> headers, String payload) {
             
 
             List<String> headersArrayList =  new ArrayList<>();
-            headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v);});
+            headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v.toString());});
             String[] headersArray = new String[headersArrayList.size()];
 
             
@@ -39,10 +58,16 @@ public class HttpReq {
 
     }
 
-    public CompletableFuture<String> sendGetRequest(String address, HashMap<String, String> headers) {
+    
+    /** 
+     * @param address
+     * @param headers
+     * @return CompletableFuture<String>
+     */
+    private CompletableFuture<String> sendGetRequest(String address, HashMap<String, Object> headers) {
 
         List<String> headersArrayList =  new ArrayList<>();
-        headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v);});
+        headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v.toString());});
         String[] headersArray = new String[headersArrayList.size()];
 
         
@@ -59,11 +84,18 @@ public class HttpReq {
 
     }
     
-    public CompletableFuture<String> sendPutRequest(String address, HashMap<String, String> headers, String payload) {
+    
+    /** 
+     * @param address
+     * @param headers
+     * @param payload
+     * @return CompletableFuture<String>
+     */
+    private CompletableFuture<String> sendPutRequest(String address, HashMap<String, Object> headers, String payload) {
 
 
         List<String> headersArrayList =  new ArrayList<>();
-        headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v);});
+        headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v.toString());});
         String[] headersArray = new String[headersArrayList.size()];
 
         var request = HttpRequest.newBuilder()
@@ -79,10 +111,16 @@ public class HttpReq {
 
     }
 
-    public CompletableFuture<String> sendDeleteRequest(String address, HashMap<String, String> headers) {
+    
+    /** 
+     * @param address
+     * @param headers
+     * @return CompletableFuture<String>
+     */
+    private CompletableFuture<String> sendDeleteRequest(String address, HashMap<String, Object> headers) {
 
         List<String> headersArrayList =  new ArrayList<>();
-        headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v);});
+        headers.forEach((k,v)-> {headersArrayList.add(k); headersArrayList.add(v.toString());});
         String[] headersArray = new String[headersArrayList.size()];
 
         var request = HttpRequest.newBuilder()
@@ -96,6 +134,35 @@ public class HttpReq {
                         .thenApply(HttpResponse::body)
                         .exceptionally(e -> "Error: " + e.getMessage());
 
+    }
+
+    
+    /**
+     * This method send an HTTP request to an address
+     * @param address the address where the request is going to be sent.
+     * @param configuration contains the parameters of the HTTP request, in this case the methodType as well as the headers.
+     * @param payload contains the message sent to the server.
+     * @return CompletableFuture<?>
+     */
+    @Override
+    public CompletableFuture<?> sendRequest(String address, HashMap<String, Object> configuration, Object payload) {
+        String methodType = configuration.get("MethodType").toString();
+        configuration.remove("MethodType");
+        CompletableFuture<String> output;
+
+        if (methodType.equals("POST")){
+            output = this.sendPostRequest(address, configuration, payload.toString());
+        }else if (methodType.equals("PUT")){
+            output = this.sendPutRequest(address, configuration, payload.toString());
+        }else if (methodType.equals("DELETE")){
+            output = this.sendDeleteRequest(address, configuration);
+        }else if (methodType.equals("GET")){
+            output = this.sendGetRequest(address, configuration);
+        }else{
+            output = null;
+        }
+
+        return output;
     }
 
 }

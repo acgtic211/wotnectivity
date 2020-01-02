@@ -6,6 +6,8 @@ import es.ual.acg.utils.WsListener;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+
 
 
 
@@ -21,7 +23,10 @@ public class WsReqTest{
         
         
         try{
-            var response = this.tester.sendText(this.address, this.payload);
+            var configuration = new HashMap<String, Object>();
+            var requestType = "sendMessage";
+            configuration.put("requestType", requestType);
+            var response = this.tester.sendRequest(address, configuration, payload);
 
             System.out.println(response.toString());
             assertNotEquals(response,"");
@@ -36,9 +41,13 @@ public class WsReqTest{
         
         
         try{
-            var response = this.tester.sendText(this.address, this.payload);
+            var configuration = new HashMap<String, Object>();
+            var requestType = "close";
+            configuration.put("requestType", requestType);
+            var response = this.tester.sendRequest(address, configuration, payload);
+
             System.out.println(response.get().toString());
-            assertNotEquals(this.tester.sendClose().get().toString(),"");
+            assertNotEquals(response.get().toString(),"");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -50,7 +59,10 @@ public class WsReqTest{
         
         
         try{
-            var response = this.tester2.sendText(this.address, this.payload);
+            var configuration = new HashMap<String, Object>();
+            var requestType = "sendMessage";
+            configuration.put("requestType", requestType);
+            var response = this.tester2.sendRequest(address, configuration, payload);
 
             System.out.println(response.toString());
             assertNotEquals(response,"");

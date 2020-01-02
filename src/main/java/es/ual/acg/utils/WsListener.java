@@ -8,6 +8,13 @@ import java.util.concurrent.CompletionStage;
 public class WsListener implements WebSocket.Listener {
 
 
+    
+    /** 
+     * @param webSocket
+     * @param data
+     * @param last
+     * @return CompletionStage<?>
+     */
     @Override
     public CompletionStage<?> onBinary(WebSocket webSocket, ByteBuffer data, boolean last) {
         System.out.println(data);
@@ -15,6 +22,13 @@ public class WsListener implements WebSocket.Listener {
         return CompletableFuture.completedFuture("onBinary() completed.").thenAccept(System.out::println);
     }
 
+    
+    /** 
+     * @param webSocket
+     * @param statusCode
+     * @param reason
+     * @return CompletionStage<?>
+     */
     @Override
     public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
         System.out.println("WebSocket Listener has been closed with statusCode(" + statusCode + ").");
@@ -23,6 +37,11 @@ public class WsListener implements WebSocket.Listener {
         return new CompletableFuture<Void>();
     }
 
+    
+    /** 
+     * @param webSocket
+     * @param error
+     */
     @Override
     public void onError(WebSocket webSocket, Throwable error) {
         System.out.println("A " + error.getCause() + " exception was thrown.");
@@ -30,6 +49,10 @@ public class WsListener implements WebSocket.Listener {
         webSocket.abort();
     }
 
+    
+    /** 
+     * @param webSocket
+     */
     @Override
     public void onOpen(WebSocket webSocket) {
          // This WebSocket will invoke onText, onBinary, onPing, onPong or onClose
@@ -38,6 +61,12 @@ public class WsListener implements WebSocket.Listener {
         System.out.println("WebSocket Listener has been opened for requests.");
     }
 
+    
+    /** 
+     * @param webSocket
+     * @param message
+     * @return CompletionStage<?>
+     */
     @Override
     public CompletionStage<?> onPing(WebSocket webSocket, ByteBuffer message) {
         webSocket.request(1);
@@ -46,6 +75,12 @@ public class WsListener implements WebSocket.Listener {
         return CompletableFuture.completedFuture("Ping completed.").thenAccept(System.out::println);
     }
 
+    
+    /** 
+     * @param webSocket
+     * @param message
+     * @return CompletionStage<?>
+     */
     @Override
     public CompletionStage<?> onPong(WebSocket webSocket, ByteBuffer message) {
         webSocket.request(1);
@@ -54,6 +89,13 @@ public class WsListener implements WebSocket.Listener {
         return CompletableFuture.completedFuture("Pong completed.").thenAccept(System.out::println);
     }
 
+    
+    /** 
+     * @param webSocket
+     * @param data
+     * @param last
+     * @return CompletionStage<?>
+     */
     @Override
     public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
         System.out.println(data);

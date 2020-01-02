@@ -2,6 +2,11 @@ package es.ual.acg;
 
 
 public final class App {
+    
+    /** 
+     * @return
+     * @author Manel Mena
+     */
     private App() {
     }
 

@@ -19,10 +19,22 @@ public class KnxReq {
 
 	InetSocketAddress remote;
 
+	
+	/** 
+	 * @return 
+	 */
 	public KnxReq(){
 		
 	}
 
+	
+	/** 
+	 * @param address
+	 * @param group
+	 * @param datatype
+	 * @return String
+	 * @throws Exception
+	 */
 	public String getStatus(String address, String group, String datatype) throws Exception {
 	
 		this.remote = new InetSocketAddress(address, 3671);
@@ -62,6 +74,14 @@ public class KnxReq {
 		}
 	}
 
+	
+	/** 
+	 * @param address
+	 * @param group
+	 * @param datatype
+	 * @param value
+	 * @throws Exception
+	 */
 	public void setStatus(String address, String group, String datatype, String value) throws Exception {
 	
 		this.remote = new InetSocketAddress(address, 3671);
