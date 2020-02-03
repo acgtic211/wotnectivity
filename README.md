@@ -1,20 +1,57 @@
-# Wotnectivity
-JAVA library to connect to different communication protocols of IoT devices.
+# WoTnectivity
+WoTnectivity ecosystem parent project. This project offers an interface to help implement a WoTnectivity protocol to add to the WoTnectivity ecosystem.
 
-## Common Communication Protocols
+Java library to connect to different communication protocols of IoT devices.
 
-### Zigbee - Zwave
-Depends on the gateway used to control the devices. Until now we are studying 2 models of gateways (Hopefully avaliable in Europe).
+## Install instructions
 
-* Wink Hub 2 - ![https://winkapiv2.docs.apiary.io/#reference/device/desired-state-and-last-reading] <--- Looks good.
-* Samsung Smarthings API - ![https://smartthings.developer.samsung.com/docs/api-ref/st-api.html#section/Overview]
+If you want to compile your own source code, you will need to add the generated .jar to the local mvn repository.
+
+```console
+foo@bar:~$ mvn install:install-file "-Dfile=wotnectivity-0.0.1-ALPHA-SNAPSHOT.jar" "-DgroupId=es.ual.acg" "-DartifactId=wotnectivity" "-Dversion=0.0.1-ALPHA-SNAPSHOT" "-Dpackaging=jar"
+```
+
+After installing it into the maven repository the only thing that you have to do in order to implement a new library protocol is to add the necessary dependency and implement the interface IRequester in the corresponding class.
+
+```xml
+<dependency>
+    <groupId>es.ual.acg</groupId>
+    <artifactId>wotnectivity</artifactId>
+    <version>0.0.1-ALPHA-SNAPSHOT</version>
+</dependency>
+```
+
+
+## Supported Protocols
+
+### HTTP
+
+The source code, releases and the help can be found in:
+
++ [https://github.com/acgtic211/wotnectivity-http](https://github.com/acgtic211/wotnectivity-http).
+
+### WebSocket
+
+The source code, releases and the help can be found in:
+
++ [https://github.com/acgtic211/wotnectivity-ws](https://github.com/acgtic211/wotnectivity-ws).
 
 ### KNX
 
-We have disponibility of the KNX InSide MTN6500 gateway so our studies will be based on this gateway of KNX.
+The source code, releases and the help can be found in:
 
-To use these kinds of devices we have to know the {ip}:{port}/{groupAddress} an the data type acepted by that group.
++ [https://github.com/acgtic211/wotnectivity-knx](https://github.com/acgtic211/wotnectivity-knx).
 
-### Install instructions
+## Collaborators
 
-To install the library in your maven local repository you have to execute `mvn install:install-file "-Dfile=wotnectivity-0.0.1-ALPHA-SNAPSHOT.jar" "-DgroupId=es.ual.acg" "-DartifactId=wotnectivity" "-Dversion=0.0.1-ALPHA-SNAPSHOT" "-Dpackaging=jar"` in the folder where the jar is located.
+* **Manel Mena** -  [https://github.com/manelme](https://github.com/manelme).
+
+* **Javier Criado** -  [https://github.com/javicriado](https://github.com/javicriado).
+
+* **Luis Iribarne** -  [https://w3.ual.es/~liribarn/](https://w3.ual.es/~liribarn/).
+
+* **Antonio Corral** -  [https://github.com/ualacorral](https://github.com/ualacorral).
+
+
+## Acknowledgements
+This work was funded by the EU ERDF and the Spanish MINECO under Project [TIN2017-83964-R](http://acg.ual.es/projects/cosmart/) and the regional project (ref. CEIJ-C01.2) coordinated from UAL-UCA universities and funded by the CEIMAR consortium. Manel Mena has been funded by a grant of the Spanish Government FPU17/02010.
