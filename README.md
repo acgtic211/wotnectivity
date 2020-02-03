@@ -5,6 +5,8 @@ Java library to connect to different communication protocols of IoT devices.
 
 ## Install instructions
 
+> :warning: **Requirements**: You need to have installed [Java 11+](https://openjdk.java.net/projects/jdk/11/) and [Maven 3.6.3+](http://maven.apache.org).
+
 If you want to compile your own source code, you will need to add the generated .jar to the local mvn repository.
 
 ```console
@@ -20,8 +22,6 @@ After installing it into the maven repository the only thing that you have to do
     <version>0.0.1-ALPHA-SNAPSHOT</version>
 </dependency>
 ```
-
-> :warning: **Requirements**: For this to work you need to have installed [Java 11+](https://openjdk.java.net/projects/jdk/11/) and [Maven 3.6.3+](http://maven.apache.org).
 
 ## Supported Protocols
 
