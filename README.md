@@ -21,6 +21,8 @@ After installing it into the maven repository the only thing that you have to do
 </dependency>
 ```
 
+> [!IMPORTANT]
+> For this to work you need to have installed [Java 11+](https://openjdk.java.net/projects/jdk/11/) and [Maven 3.6.3+](http://maven.apache.org)
 
 ## Supported Protocols
 

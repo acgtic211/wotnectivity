@@ -4,6 +4,14 @@
     <groupId>es.ual.acg</groupId>
     <artifactId>wotnectivity</artifactId>
     <version>0.0.1-ALPHA-SNAPSHOT</version>
+    
+    <name>WoTnectivity</name>
+    <description>WoTnectivity parent project to implement new library protocols</description>
+    <url>https://github.com/acgtic211/wotnectivity</url>
+    <scm>
+        <url>https://github.com/acgtic211/wotnectivity</url>
+    </scm>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
