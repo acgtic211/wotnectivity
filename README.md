@@ -3,7 +3,7 @@ WoTnectivity ecosystem parent project. This project offers an interface to help 
 
 Java library to connect to different communication protocols of IoT devices.
 
-## Install instructions
+## Install WoTnectivity
 
 > :warning: **Requirements**: You need to have installed [Java 11+](https://openjdk.java.net/projects/jdk/11/) and [Maven 3.6.3+](http://maven.apache.org).
 
