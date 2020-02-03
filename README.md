@@ -55,4 +55,4 @@ The source code, releases and the help can be found in:
 
 
 ## Acknowledgements
-This work was funded by the EU ERDF and the Spanish MINECO under Project [TIN2017-83964-R](http://acg.ual.es/projects/cosmart/) and the regional project (ref. CEIJ-C01.2) coordinated from UAL-UCA universities and funded by the CEIMAR consortium. Manel Mena has been funded by a grant of the Spanish Government FPU17/02010.
+This work was funded by the EU ERDF and the Spanish MINECO under Project [TIN2017-83964-R](http://acg.ual.es/projects/cosmart/) and the regional project (ref. CEIJ-C01.2) coordinated from UAL-UCA universities and funded by the [CEIMAR consortium](http://www.campusdelmar.com/en/ceimar-en/). Manel Mena has been funded by a grant of the Spanish Government FPU17/02010.
